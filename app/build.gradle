@@ -11,10 +11,19 @@ android {
     versionCode 1
     versionName "1.0"
   }
+  signingConfigs {
+    release {
+      storeFile file("../signing/sample-inapp.keystore")
+      storePassword "123456"
+      keyAlias "sample-inapp"
+      keyPassword "123456"
+    }
+  }
   buildTypes {
     release {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      signingConfig signingConfigs.release
     }
   }
 }
