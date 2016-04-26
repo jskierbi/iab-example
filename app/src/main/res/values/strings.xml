@@ -1,3 +1,7 @@
 <resources>
   <string name="app_name">sample-inapp</string>
+  <string name="iab_init_failed">IAB initialization failure</string>
+  <string name="exit">Exit app</string>
+  <string name="ok">Ok</string>
+  <string name="iab_purchase_succeeded">Purchase succeeded</string>
 </resources>
