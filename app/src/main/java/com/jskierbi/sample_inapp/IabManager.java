@@ -94,6 +94,23 @@ public class IabManager {
         });
   }
 
+  public Observable<Inventory> getAllProducts() {
+    return initializeHelper()
+        .first()
+        .flatMap(new Func1<IabHelper, Observable<Inventory>>() {
+          @Override
+          public Observable<Inventory> call(final IabHelper iabHelper) {
+            return Observable.create(new SafeOnSubscribe<Inventory>() {
+              @Override
+              public void safeCall(Subscriber<? super Inventory> subscriber) throws Throwable {
+                subscriber.onNext(iabHelper.queryInventory(true, null));
+                subscriber.onCompleted();
+              }
+            });
+          }
+        });
+  }
+
   @VisibleForTesting
   synchronized Observable<IabHelper> initializeHelper() {
     if (mHelperInitSubject == null || mHelperInitSubject.hasThrowable()) {
