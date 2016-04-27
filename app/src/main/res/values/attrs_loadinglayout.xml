@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="LoadingLayout">
+    <attr name="loading_layout" format="reference"/>
+    <attr name="loading_layer_alpha" format="float"/>
+    <attr name="loading_initially_visible" format="boolean"/>
+    <attr name="loader_color" format="color"/>
+    <attr name="label" format="string"/>
+  </declare-styleable>
+</resources>

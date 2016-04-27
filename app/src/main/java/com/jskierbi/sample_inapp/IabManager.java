@@ -94,7 +94,14 @@ public class IabManager {
         });
   }
 
-  public Observable<Inventory> getAllProducts() {
+  /**
+   * When making the query, you will need to specify the product IDs for the products explicitly.
+   *
+   * @param itemSkus items to be queried
+   * @return Observable emitting {@link Inventory} containing queried item details
+   * @see http://developer.android.com/training/in-app-billing/list-iab-products.html#QueryDetails
+   */
+  public Observable<Inventory> getItemDetails(final List<String> itemSkus) {
     return initializeHelper()
         .first()
         .flatMap(new Func1<IabHelper, Observable<Inventory>>() {
@@ -103,7 +110,7 @@ public class IabManager {
             return Observable.create(new SafeOnSubscribe<Inventory>() {
               @Override
               public void safeCall(Subscriber<? super Inventory> subscriber) throws Throwable {
-                subscriber.onNext(iabHelper.queryInventory(true, null));
+                subscriber.onNext(iabHelper.queryInventory(true, itemSkus));
                 subscriber.onCompleted();
               }
             });
